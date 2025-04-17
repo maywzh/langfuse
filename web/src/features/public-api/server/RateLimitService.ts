@@ -220,6 +220,12 @@ const getPlanBasedRateLimitConfig = (
         points: null,
         durationInSec: null,
       };
+    case "self-hosted:tesla":
+      return {
+        resource,
+        points: null,
+        durationInSec: null,
+      }
     case "cloud:hobby":
       switch (resource) {
         case "ingestion":
