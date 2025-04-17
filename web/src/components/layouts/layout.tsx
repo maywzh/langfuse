@@ -277,7 +277,7 @@ export default function Layout(props: PropsWithChildren) {
     <>
       <Head>
         <title>
-          {activePathName ? `${activePathName} | Langfuse` : "Langfuse"}
+          {activePathName ? `${activePathName} | TVS Insight` : "TVS Insight"}
         </title>
         <link
           rel="apple-touch-icon"
