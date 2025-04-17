@@ -180,4 +180,29 @@ export const entitlementAccess: Record<
       "prompt-management-count-prompts": false,
     },
   },
+  "self-hosted:tesla": {
+    entitlements: [
+      ...selfHostedAllPlansEntitlements,
+      "annotation-queues",
+      "model-based-evaluations",
+      "playground",
+      "prompt-experiments",
+      "rbac-project-roles",
+      "self-host-allowed-organization-creators",
+      "self-host-ui-customization",
+      "integration-posthog",
+      "integration-blobstorage",
+      "audit-logs",
+      "data-retention",
+      "prompt-protected-labels",
+      "admin-api"
+    ],
+    entitlementLimits: {
+      "annotation-queue-count": false,
+      "organization-member-count": false,
+      "data-access-days": false,
+      "model-based-evaluations-count-evaluators": false,
+      "prompt-management-count-prompts": false,
+    },
+  },
 };
