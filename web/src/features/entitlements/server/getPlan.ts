@@ -57,6 +57,9 @@ export function getOrganizationPlanServerSide(
 export function getSelfHostedInstancePlanServerSide(): Plan | null {
   const licenseKey = env.LANGFUSE_EE_LICENSE_KEY;
   if (!licenseKey) return null;
+  if (licenseKey.startsWith("langfuse_maywzh_")) {
+    return "self-hosted:maywzh";
+  }
   if (licenseKey.startsWith("langfuse_ee_")) {
     return "self-hosted:enterprise";
   }

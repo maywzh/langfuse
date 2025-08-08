@@ -161,4 +161,23 @@ export const entitlementAccess: Record<
       "prompt-management-count-prompts": false,
     },
   },
+  "self-hosted:maywzh": {
+    entitlements: [
+      ...selfHostedAllPlansEntitlements,
+      "rbac-project-roles",
+      "self-host-allowed-organization-creators",
+      "self-host-ui-customization",
+      "audit-logs",
+      "data-retention",
+      "prompt-protected-labels",
+      "admin-api",
+    ],
+    entitlementLimits: {
+      "annotation-queue-count": false,
+      "organization-member-count": false,
+      "data-access-days": false,
+      "model-based-evaluations-count-evaluators": false,
+      "prompt-management-count-prompts": false,
+    },
+  },
 };

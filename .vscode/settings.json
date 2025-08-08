@@ -3,7 +3,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
   "editor.rulers": [100],
   "editor.tabSize": 2,
 
@@ -28,5 +27,17 @@
     "editor.defaultFormatter": "Prisma.prisma"
   },
   "eslint.lintTask.enable": true,
-  "eslint.workingDirectories": ["./web", "./worker"]
+  "eslint.workingDirectories": [
+    "./web",
+    "./worker"
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  }
 }
