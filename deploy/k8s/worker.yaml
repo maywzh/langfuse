@@ -1,0 +1,77 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langfuse-worker
+  namespace: langfuse
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      component: langfuse-worker
+  template:
+    metadata:
+      labels:
+        component: langfuse-worker
+    spec:
+      containers:
+        - name: langfuse-worker
+          image: docker.maywzh.com/maywzh/langfuse-langfuse-worker:08090209
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 201m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          envFrom:
+            - secretRef:
+                name: langfuse-secrets
+          ports:
+            - containerPort: 3030
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: langfuse-worker-svc
+  namespace: langfuse
+  labels:
+    component: langfuse-worker
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3030
+      name: http-web
+      protocol: TCP
+      targetPort: 3030
+  selector:
+    component: langfuse-worker
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: langfuse-worker-ingress
+  namespace: langfuse
+  labels:
+    components: langfuse
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: higress
+  tls:
+    - hosts:
+        - langfuse-worker.maywzh.com
+      secretName: langfuse-worker-tls
+  rules:
+    - host: langfuse-worker.maywzh.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: langfuse-worker-svc
+                port:
+                  name: http-web
